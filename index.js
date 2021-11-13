@@ -15,6 +15,6 @@ app.use(express.json());
 
 app.use("/api/dsp", authRoute);
 
-app.listen(3000 || process.env.PORT, () =>
+app.listen(process.env.PORT || 5000, () =>
   console.log(`Server is up and running on!`)
 );
