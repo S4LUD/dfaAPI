@@ -108,7 +108,7 @@ router.get("/data", async (req, res) => {
 
 router.get("/sales", async (req, res) => {
   try {
-    const data = await userScheme.findOne({
+    const data = await saleScheme.findOne({
       uid: req.body.uid,
     });
     res.send(data);
