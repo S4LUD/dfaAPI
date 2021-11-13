@@ -109,14 +109,15 @@ router.get("/data", async (req, res) => {
 
 //Get DSP Sales
 router.get("/sale", async (req, res) => {
-  try {
-    const data = await saleScheme.findOne({
-      uid: req.body.uid,
-    });
-    res.send(data);
-  } catch (err) {
-    res.status(400).send(err);
-  }
+  res.send("Hello World");
+  // try {
+  //   const data = await saleScheme.findOne({
+  //     uid: req.body.uid,
+  //   });
+  //   res.send(data);
+  // } catch (err) {
+  //   res.status(400).send(err);
+  // }
 });
 
 // router.delete("/delete/:dataID", async (req, res) => {
