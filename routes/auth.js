@@ -29,6 +29,7 @@ router.post("/register", async (req, res) => {
     area_located: req.body.area_located,
     password: hashedPassword,
   });
+
   try {
     const UReg = await data.save();
     res.send({ message: "OK" });
@@ -106,7 +107,8 @@ router.get("/data", async (req, res) => {
   }
 });
 
-router.get("/sales", async (req, res) => {
+//Get DSP Sales
+router.get("/sale", async (req, res) => {
   try {
     const data = await saleScheme.findOne({
       uid: req.body.uid,
