@@ -8,6 +8,7 @@ const saleScheme = new mongoose.Schema({
   load: {
     type: Array,
     required: true,
+    
   },
   simcard: {
     type: Array,

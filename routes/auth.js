@@ -31,7 +31,16 @@ router.post("/register", async (req, res) => {
   });
 
   try {
+    const sale = new saleScheme({
+      uid: data._id,
+      load: { overall: "0", distributed: "0", balance: "0" },
+      simcard: { overall: "0", distributed: "0", balance: "0" },
+      pocketwifi: { overall: "0", distributed: "0", balance: "0" },
+    });
+
     const UReg = await data.save();
+    const URegs = await sale.save();
+
     res.send({ message: "OK" });
   } catch (err) {
     res.status(400).send({ message: err["message"] });
