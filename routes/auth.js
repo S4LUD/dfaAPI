@@ -119,7 +119,7 @@ router.get("/data", async (req, res) => {
 //Get DSP Sales
 router.get("/sale/:userID", async (req, res) => {
   try {
-    const data = await userScheme.findOne({
+    const data = await saleScheme.findOne({
       uid: req.params.userID,
     });
     res.send(data);
