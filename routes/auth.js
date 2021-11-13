@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const userScheme = require("../models/userScheme");
+const saleScheme = require("../models/saleScheme");
 const bcrypt = require("bcryptjs");
 const { regScheme, logScheme } = require("../models/validation");
 //const jwt = require("jsonwebtoken");
@@ -99,6 +100,17 @@ router.get("/data", async (req, res) => {
   try {
     const data = await userScheme.find();
     console.log("All Data Fetched.");
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.get("/sales", async (req, res) => {
+  try {
+    const data = await userScheme.findOne({
+      uid: req.body.uid,
+    });
     res.send(data);
   } catch (err) {
     res.status(400).send(err);
