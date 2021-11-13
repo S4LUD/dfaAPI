@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const saleScheme = new mongoose.Schema({
+  uid: {
+    type: String,
+    required: true,
+  },
   load: {
     type: Array,
     required: true,
