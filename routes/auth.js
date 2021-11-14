@@ -56,7 +56,6 @@ router.post("/register", async (req, res) => {
     ]);
 
     const UReg = await data.save();
-    const URegs = await sale.save();
 
     res.send({ message: "OK" });
   } catch (err) {
@@ -136,7 +135,7 @@ router.get("/data", async (req, res) => {
 //Get DSP Sales
 router.get("/sale/:userID", async (req, res) => {
   try {
-    const data = await saleScheme.findOne({
+    const data = await saleScheme.find({
       uid: { $in: req.params.userID },
     });
     res.send(data);
