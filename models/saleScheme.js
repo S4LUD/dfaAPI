@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const saleScheme = new mongoose.Schema({
   uid: {
-    type: String,
+    type: ObjectId,
     required: true,
   },
   load: {
