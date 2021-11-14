@@ -6,16 +6,15 @@ const saleScheme = new mongoose.Schema({
     required: true,
   },
   load: {
-    type: Array,
+    type: Object,
     required: true,
-    
   },
   simcard: {
-    type: Array,
+    type: Object,
     required: true,
   },
   pocketwifi: {
-    type: Array,
+    type: Object,
     required: true,
   },
 });

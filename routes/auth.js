@@ -120,7 +120,7 @@ router.get("/data", async (req, res) => {
 router.get("/sale/:userID", async (req, res) => {
   try {
     const data = await saleScheme.findOne({
-      uid: req.params.userID,
+      uid: { $in: ObjectId(req.params.userID) },
     });
     res.send(data);
   } catch (err) {
