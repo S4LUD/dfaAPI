@@ -31,31 +31,17 @@ router.post("/register", async (req, res) => {
   });
 
   try {
-    const sale = await saleScheme.insertMany([
-      {
-        uid: data._id,
-        type: "load",
-        overall: "0",
-        distributed: "0",
-        balance: "0",
+    const sale = new saleScheme({
+      uid: data._id,
+      sales: {
+        load: { overall: "0", distributed: "0", balance: "0" },
+        pocketwifi: { overall: "0", distributed: "0", balance: "0" },
+        simcard: { overall: "0", distributed: "0", balance: "0" },
       },
-      {
-        uid: data._id,
-        type: "pocketwifi",
-        overall: "0",
-        distributed: "0",
-        balance: "0",
-      },
-      {
-        uid: data._id,
-        type: "simcard",
-        overall: "0",
-        distributed: "0",
-        balance: "0",
-      },
-    ]);
+    });
 
     const UReg = await data.save();
+    const URegs = await sale.save();
 
     res.send({ message: "OK" });
   } catch (err) {

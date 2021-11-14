@@ -5,22 +5,10 @@ const saleScheme = new mongoose.Schema({
     type: String,
     required: true,
   },
-  type: {
-    type: String,
+  sales: {
+    type: Object,
     required: true,
-  },
-  overall: {
-    type: String,
-    required: true,
-  },
-  distributed: {
-    type: String,
-    required: true,
-  },
-  balance: {
-    type: String,
-    required: true,
-  },
+  }
 });
 
 module.exports = mongoose.model("sale", saleScheme);
