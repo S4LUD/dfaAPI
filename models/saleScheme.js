@@ -2,19 +2,23 @@ const mongoose = require("mongoose");
 
 const saleScheme = new mongoose.Schema({
   uid: {
-    type: ObjectId,
+    type: String,
     required: true,
   },
-  load: {
-    type: Object,
+  type: {
+    type: String,
     required: true,
   },
-  simcard: {
-    type: Object,
+  overall: {
+    type: String,
     required: true,
   },
-  pocketwifi: {
-    type: Object,
+  distributed: {
+    type: String,
+    required: true,
+  },
+  balance: {
+    type: String,
     required: true,
   },
 });

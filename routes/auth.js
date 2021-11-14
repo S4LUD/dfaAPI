@@ -31,12 +31,29 @@ router.post("/register", async (req, res) => {
   });
 
   try {
-    const sale = new saleScheme({
-      uid: data._id,
-      load: { overall: "0", distributed: "0", balance: "0" },
-      simcard: { overall: "0", distributed: "0", balance: "0" },
-      pocketwifi: { overall: "0", distributed: "0", balance: "0" },
-    });
+    const sale = await saleScheme.insertMany([
+      {
+        uid: data._id,
+        type: "load",
+        overall: "0",
+        distributed: "0",
+        balance: "0",
+      },
+      {
+        uid: data._id,
+        type: "pocketwifi",
+        overall: "0",
+        distributed: "0",
+        balance: "0",
+      },
+      {
+        uid: data._id,
+        type: "simcard",
+        overall: "0",
+        distributed: "0",
+        balance: "0",
+      },
+    ]);
 
     const UReg = await data.save();
     const URegs = await sale.save();
@@ -120,7 +137,7 @@ router.get("/data", async (req, res) => {
 router.get("/sale/:userID", async (req, res) => {
   try {
     const data = await saleScheme.findOne({
-      uid: { $in: ObjectId(req.params.userID) },
+      uid: { $in: req.params.userID },
     });
     res.send(data);
   } catch (err) {
