@@ -20,6 +20,17 @@ const logScheme = (data) => {
   return schemaLog.validate(data);
 };
 
+const adminScheme = (data) => {
+  const schemaAdm = Joi.object({
+    type: Joi.string().required(),
+    password: Joi.string().min(6).max(16).required(),
+    //confirm_password: Joi.string().min(6).max(16).required(),
+  });
+  return schemaAdm.validate(data);
+};
+
 module.exports.regScheme = regScheme;
 
 module.exports.logScheme = logScheme;
+
+module.exports.adminScheme = adminScheme;

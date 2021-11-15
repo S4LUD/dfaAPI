@@ -3,7 +3,7 @@ const userScheme = require("../models/userScheme");
 const saleScheme = require("../models/saleScheme");
 const transactionScheme = require("../models/transactionScheme");
 const bcrypt = require("bcryptjs");
-const { regScheme, logScheme } = require("../models/validation");
+const { regScheme, logScheme, adminScheme } = require("../models/validation");
 //const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
@@ -76,6 +76,31 @@ router.post("/login", async (req, res) => {
 
     //const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
     //res.header("auth-token", token).send(token);
+  } catch (err) {
+    res.status(400).send({ message: err["message"] });
+  }
+});
+
+//Check admin if exist
+router.post("/admin/:user/:pass", async (req, res) => {
+  try {
+    const user = await userScheme.findOne({
+      type: req.params.user,
+    });
+    if (!user) return res.status(400).send({ message: "Invalid Credentials" });
+
+    const validPass = await bcrypt.compare(req.params.pass, user.password);
+    if (!validPass)
+      return res.status(400).send({ message: "Invalid Credentials" });
+
+    const setStat = await userScheme.updateOne(
+      {
+        type: req.body.type,
+      },
+      { $set: { ustat: true } }
+    );
+
+    res.send({ _id: user._id });
   } catch (err) {
     res.status(400).send({ message: err["message"] });
   }

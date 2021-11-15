@@ -29,6 +29,10 @@ const userScheme = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  type: {
+    type: String,
+    default: "dsp",
+  },
 });
 
 module.exports = mongoose.model("user", userScheme);
