@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const userScheme = require("../models/userScheme");
 const saleScheme = require("../models/saleScheme");
+const transactionScheme = require("../models/transactionScheme");
 const bcrypt = require("bcryptjs");
 const { regScheme, logScheme } = require("../models/validation");
 //const jwt = require("jsonwebtoken");
@@ -123,6 +124,18 @@ router.get("/sale/:userID", async (req, res) => {
   try {
     const data = await saleScheme.find({
       uid: { $in: req.params.userID },
+    });
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+//Get customer detail
+router.get("/customer/:detailID", async (req, res) => {
+  try {
+    const data = await transactionScheme.find({
+      uid: { $in: req.params.detailID },
     });
     res.send(data);
   } catch (err) {
