@@ -134,10 +134,11 @@ router.get("/find", async (req, res) => {
 });
 
 //Get all users
-router.get("/data", async (req, res) => {
+router.get("/data/:type", async (req, res) => {
   try {
-    const data = await userScheme.find();
-    console.log("All Data Fetched.");
+    const data = await userScheme.find({
+      type: { $in: req.params.type },
+    });
     res.send(data);
   } catch (err) {
     res.status(400).send(err);
