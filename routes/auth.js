@@ -145,6 +145,18 @@ router.get("/data/:type", async (req, res) => {
   }
 });
 
+//Get admin data
+router.get("/admin/:adminID", async (req, res) => {
+  try {
+    const data = await userScheme.find({
+      _id: { $in: req.params.adminID },
+    });
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 //Get DSP Sales
 router.get("/sale/:userID", async (req, res) => {
   try {
