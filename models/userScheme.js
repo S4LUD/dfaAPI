@@ -33,6 +33,10 @@ const userScheme = new mongoose.Schema({
     type: String,
     default: "dsp",
   },
+  image: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("user", userScheme);
