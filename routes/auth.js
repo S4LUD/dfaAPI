@@ -157,6 +157,32 @@ router.get("/admin/:adminID", async (req, res) => {
   }
 });
 
+//Update admin
+router.patch(
+  "/admin/:id/:name/:mobile_number/:area_located/:address/:image",
+  async (req, res) => {
+    try {
+      const data = await userScheme.updateOne(
+        {
+          _id: req.params.id,
+        },
+        {
+          $set: {
+            name: req.params.name,
+            mobile_number: req.params.mobile_number,
+            area_located: req.params.area_located,
+            address: req.params.address,
+            image: req.params.image,
+          },
+        }
+      );
+      res.send(data);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  }
+);
+
 //Get DSP Sales
 router.get("/sale/:userID", async (req, res) => {
   try {
