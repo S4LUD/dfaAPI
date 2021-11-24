@@ -159,7 +159,7 @@ router.get("/admin/:adminID", async (req, res) => {
 
 //Update admin
 router.patch(
-  "/admin/:id/:name/:mobile_number/:area_located/:address",
+  "/updateadmin/:id/:name/:mobile_number/:area_located/:address",
   async (req, res) => {
     try {
       const data = await userScheme.updateOne(
