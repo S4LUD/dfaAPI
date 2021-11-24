@@ -162,7 +162,6 @@ router.patch(
   "/updateadmin/:id/:name/:mobile_number/:area_located/:address",
   async (req, res) => {
     try {
-      console.log(req.body.image);
       const data = await userScheme.updateOne(
         {
           _id: req.params.id,
