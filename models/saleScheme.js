@@ -17,6 +17,30 @@ const saleScheme = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  load_overall: {
+    type: Number,
+    required: true,
+  },
+  load_distributed: {
+    type: Number,
+    required: true,
+  },
+  pocketwifi_overall: {
+    type: Number,
+    required: true,
+  },
+  pocketwifi_distributed: {
+    type: Number,
+    required: true,
+  },
+  simcard_overall: {
+    type: Number,
+    required: true,
+  },
+  simcard_distributed: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("sale", saleScheme);

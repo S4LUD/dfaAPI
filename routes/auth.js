@@ -6,6 +6,21 @@ const bcrypt = require("bcryptjs");
 const { regScheme, logScheme, adminScheme } = require("../models/validation");
 //const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const timeScheme = require("../models/timeScheme");
+
+router.post("/meeting", async (req, res) => {
+  const data = new timeScheme({
+    content: req.body.content,
+    data_time: req.body.data_time,
+  });
+
+  try {
+    const UReg = await data.save();
+    res.send(UReg);
+  } catch (err) {
+    res.status(400).send({ message: err["message"] });
+  }
+});
 
 //dotenv.config();
 
