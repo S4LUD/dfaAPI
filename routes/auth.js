@@ -183,6 +183,47 @@ router.patch(
   }
 );
 
+//Patch balance admin
+router.patch("/sale/:id/:type/:balance", async (req, res) => {
+  try {
+    if (req.params.type === "load") {
+      const data = await saleScheme.updateOne(
+        {
+          uid: req.params.id,
+        },
+        {
+          $inc: { load_balance: req.params.balance },
+        }
+      );
+      res.send(data);
+    } else if (req.params.type === "simcard") {
+      const data = await saleScheme.updateOne(
+        {
+          uid: req.params.id,
+        },
+        {
+          $inc: { simcard_balance: req.params.balance },
+        }
+      );
+      res.send(data);
+    } else if (req.params.type === "pocketwifi") {
+      const data = await saleScheme.updateOne(
+        {
+          uid: req.params.id,
+        },
+        {
+          $inc: { pocketwifi_balance: req.params.balance },
+        }
+      );
+      res.send(data);
+    } else {
+      res.send("Type wrong");
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 //Get DSP Sales
 router.get("/sale/:userID", async (req, res) => {
   try {

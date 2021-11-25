@@ -5,10 +5,18 @@ const saleScheme = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sales: {
-    type: Object,
+  load_balance: {
+    type: Number,
     required: true,
-  }
+  },
+  simcard_balance: {
+    type: Number,
+    required: true,
+  },
+  pocketwifi_balance: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("sale", saleScheme);
