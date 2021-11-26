@@ -49,11 +49,15 @@ router.post("/register", async (req, res) => {
   try {
     const sale = new saleScheme({
       uid: data._id,
-      sales: {
-        load: { overall: "0", distributed: "0", balance: "0" },
-        pocketwifi: { overall: "0", distributed: "0", balance: "0" },
-        simcard: { overall: "0", distributed: "0", balance: "0" },
-      },
+      load_balance: 0,
+      simcard_balance: 0,
+      pocketwifi_balance: 0,
+      load_overall: 0,
+      load_distributed: 0,
+      pocketwifi_overall: 0,
+      pocketwifi_distributed: 0,
+      simcard_overall: 0,
+      simcard_distributed: 0,
     });
 
     const UReg = await data.save();
