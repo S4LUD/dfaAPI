@@ -7,6 +7,7 @@ const regScheme = (data) => {
     area_located: Joi.string().required(),
     address: Joi.string().required(),
     password: Joi.string().min(6).max(16).required(),
+    image: Joi.string(),
   });
   return schemaReg.validate(data);
 };
@@ -28,7 +29,7 @@ const adminScheme = (data) => {
     mobile_number: Joi.string().max(11).min(11).required(),
     area_located: Joi.string().required(),
     address: Joi.string().required(),
-    image: Joi.string().required(),
+    image: Joi.string(),
   });
   return schemaAdm.validate(data);
 };
