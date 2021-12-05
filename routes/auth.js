@@ -33,7 +33,7 @@ router.get("/meeting", async (req, res) => {
 //Register the user
 router.post("/register", async (req, res) => {
   const { error } = regScheme(req.body);
-  if (error) return res.status(400).send(error["details"][0]["message"]);
+  if (error) return res.status(400).send({message:error["details"][0]["message"]});
 
   const numberExist = await userScheme.findOne({
     mobile_number: req.body.mobile_number,
@@ -79,7 +79,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { error } = logScheme(req.body);
-    if (error) return res.status(400).send(error["details"][0]["message"]);
+    if (error)
+      return res.status(400).send({ message: error["details"][0]["message"] });
 
     const user = await userScheme.findOne({
       mobile_number: req.body.mobile_number,
