@@ -20,6 +20,16 @@ router.post("/meeting", async (req, res) => {
   }
 });
 
+//Get all meetings
+router.get("/meeting", async (req, res) => {
+  const data = await timeScheme.find();
+  try {
+    res.send(data);
+  } catch (err) {
+    res.status(400).send({ message: err["message"] });
+  }
+});
+
 //Register the user
 router.post("/register", async (req, res) => {
   const { error } = regScheme(req.body);
