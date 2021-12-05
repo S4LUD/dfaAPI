@@ -4,8 +4,6 @@ const saleScheme = require("../models/saleScheme");
 const transactionScheme = require("../models/transactionScheme");
 const bcrypt = require("bcryptjs");
 const { regScheme, logScheme, adminScheme } = require("../models/validation");
-//const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
 const timeScheme = require("../models/timeScheme");
 
 router.post("/meeting", async (req, res) => {
@@ -21,8 +19,6 @@ router.post("/meeting", async (req, res) => {
     res.status(400).send({ message: err["message"] });
   }
 });
-
-//dotenv.config();
 
 //Register the user
 router.post("/register", async (req, res) => {
@@ -91,10 +87,7 @@ router.post("/login", async (req, res) => {
       { $set: { ustat: true } }
     );
 
-    res.send({ message: "OK" });
-
-    //const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    //res.header("auth-token", token).send(token);
+    if (setStat) return res.send({ message: "OK" });
   } catch (err) {
     res.status(400).send({ message: err["message"] });
   }

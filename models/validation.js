@@ -16,7 +16,6 @@ const logScheme = (data) => {
   const schemaLog = Joi.object({
     mobile_number: Joi.string().max(11).min(11).required(),
     password: Joi.string().min(6).max(16).required(),
-    //confirm_password: Joi.string().min(6).max(16).required(),
   });
   return schemaLog.validate(data);
 };
