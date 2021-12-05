@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
       { $set: { ustat: true } }
     );
 
-    if (setStat) return res.send({ message: "OK" });
+    if (setStat) return res.send({ message: user._id });
   } catch (err) {
     res.status(400).send({ message: err["message"] });
   }
