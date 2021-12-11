@@ -33,7 +33,8 @@ router.get("/meeting", async (req, res) => {
 //Register the user
 router.post("/register", async (req, res) => {
   const { error } = regScheme(req.body);
-  if (error) return res.status(400).send({message:error["details"][0]["message"]});
+  if (error)
+    return res.status(400).send({ message: error["details"][0]["message"] });
 
   const numberExist = await userScheme.findOne({
     mobile_number: req.body.mobile_number,
@@ -205,6 +206,46 @@ router.patch(
     }
   }
 );
+
+//Update DSP password
+router.patch("/updateuserpassword", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const HashedPassword = await bcrypt.hash(req.body.password, salt);
+  try {
+    const data = await userScheme.updateOne(
+      {
+        _id: req.body.id,
+      },
+      {
+        $set: {
+          password: HashedPassword,
+        },
+      }
+    );
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+//Update DSP photo
+router.patch("/updpateuserphoto", async (req, res) => {
+  try {
+    const data = await userScheme.updateOne(
+      {
+        _id: req.body.id,
+      },
+      {
+        $set: {
+          image: req.body.image,
+        },
+      }
+    );
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //Patch balance admin
 router.patch("/sale/:id/:type/:balance", async (req, res) => {
