@@ -222,7 +222,7 @@ router.patch("/updateuserpassword", async (req, res) => {
         },
       }
     );
-    if (data) return res.send({ message: "OK" });
+    if (data) return res.send(data);
   } catch (err) {
     res.status(400).send(err);
   }
