@@ -312,21 +312,26 @@ router.get("/customer/:detailID", async (req, res) => {
   }
 });
 
+//Get customer detail
+router.post("/customer", async (req, res) => {
+  try {
+    const data = new transactionScheme({
+      uid: req.body.uid,
+      type: req.body.type,
+      name: req.body.name,
+      amount: req.body.amount,
+      mobile_number: req.body.mobile_number,
+    });
+
+    if (data) return res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 // router.delete("/delete/:dataID", async (req, res) => {
 //   try {
 //     const data = await User.deleteOne({ _id: req.params.dataID });
-//     res.send(data);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
-
-// router.patch("/update/:dataID", async (req, res) => {
-//   try {
-//     const data = await User.updateOne(
-//       { _id: req.params.dataID },
-//       { $set: { move: req.body.move, csteps: req.body.csteps } }
-//     );
 //     res.send(data);
 //   } catch (err) {
 //     res.status(400).send(err);

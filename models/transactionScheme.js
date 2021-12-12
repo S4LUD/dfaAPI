@@ -9,14 +9,6 @@ const transactionScheme = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
-  transaction: {
-    type: String,
-    required: true,
-  },
   mobile_number: {
     type: String,
     required: true,
@@ -30,7 +22,7 @@ const transactionScheme = new mongoose.Schema({
     required: true,
   },
   amount: {
-    type: String,
+    type: Number,
     required: true,
   },
 });
