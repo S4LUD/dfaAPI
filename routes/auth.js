@@ -323,7 +323,8 @@ router.post("/customer", async (req, res) => {
       mobile_number: req.body.mobile_number,
     });
 
-    if (data) return res.send(data);
+    const URegs = await data.save();
+    if (URegs) return res.send(URegs);
   } catch (err) {
     res.status(400).send(err);
   }
