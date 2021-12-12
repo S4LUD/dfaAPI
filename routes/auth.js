@@ -321,6 +321,7 @@ router.post("/customer", async (req, res) => {
       name: req.body.name,
       amount: req.body.amount,
       mobile_number: req.body.mobile_number,
+      price: req.body.price,
     });
 
     const URegs = await data.save();
