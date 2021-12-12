@@ -312,8 +312,26 @@ router.get("/customer/:detailID", async (req, res) => {
   }
 });
 
-//Get customer detail
-router.post("/customer", async (req, res) => {
+//Add customer load trans
+router.post("/customerload", async (req, res) => {
+  try {
+    const data = new transactionScheme({
+      uid: req.body.uid,
+      type: req.body.type,
+      name: req.body.name,
+      amount: req.body.amount,
+      mobile_number: req.body.mobile_number,
+    });
+
+    const URegs = await data.save();
+    if (URegs) return res.send(URegs);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+//Add customer pocketwif simcard detail
+router.post("/customerpocsim", async (req, res) => {
   try {
     const data = new transactionScheme({
       uid: req.body.uid,
