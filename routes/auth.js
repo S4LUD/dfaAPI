@@ -315,7 +315,43 @@ router.patch("/loadsale", async (req, res) => {
         },
       }
     );
-    res.send(data);
+    res.send({ message: "OK" });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.patch("/sales", async (req, res) => {
+  try {
+    if (req.body.type === "simcard") {
+      const data = await saleScheme.updateOne(
+        {
+          uid: req.body.id,
+        },
+        {
+          $inc: {
+            simcard_balance: req.body.simcard_balance,
+            simcard_distributed: req.body.simcard_distributed,
+            simcard_overall: req.body.simcard_overall,
+          },
+        }
+      );
+      if (data) return res.send({ message: "OK" });
+    } else if (req.body.type === "pocketwifi") {
+      const data = await saleScheme.updateOne(
+        {
+          uid: req.body.id,
+        },
+        {
+          $inc: {
+            pocketwifi_balance: req.body.pocketwifi_balance,
+            pocketwifi_distributed: req.body.pocketwifi_distributed,
+            pocketwifi_overall: req.body.pocketwifi_overall,
+          },
+        }
+      );
+      if (data) return res.send({ message: "OK" });
+    }
   } catch (err) {
     res.status(400).send(err);
   }
