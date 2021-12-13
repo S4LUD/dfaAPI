@@ -300,6 +300,27 @@ router.get("/sale/:userID", async (req, res) => {
   }
 });
 
+//Patch DSP Sales
+router.patch("/loadsale", async (req, res) => {
+  try {
+    const data = await saleScheme.updateOne(
+      {
+        uid: req.body.id,
+      },
+      {
+        $inc: {
+          load_balance: req.body.load_balance,
+          load_distributed: req.body.load_distributed,
+          load_overall: req.body.load_overall,
+        },
+      }
+    );
+    res.send(data);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 //Get customer detail
 router.get("/customer/:detailID", async (req, res) => {
   try {
