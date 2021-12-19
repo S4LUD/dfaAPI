@@ -135,7 +135,7 @@ router.patch("/logout", async (req, res) => {
   try {
     const data = await userScheme.updateOne(
       {
-        mobile_number: req.body.mobile_number,
+        _id: req.body._id,
       },
       { $set: { ustat: false } }
     );
